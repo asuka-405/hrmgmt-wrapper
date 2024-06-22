@@ -1,0 +1,13 @@
+jdoe,John Doe,pass123
+asmith,Alice Smith,secure456
+mjohnson,Michael Johnson,myPass789
+cjackson,Chris Jackson,password
+,Invalid User,mypassword
+tturner,Tina Turner,
+emptyusername,,emptypass
+validuser,Valid User,validPass
+invaliduser1,No Password,
+,No Username,password123
+invaliduser2,,No Name
+,,
+user3,Short,sh

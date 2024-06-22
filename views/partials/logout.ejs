@@ -1,0 +1,13 @@
+<button id="logout" class="hanging-btn">Logout</button>
+
+<script>
+  document.querySelector("#logout").addEventListener("click", async () => {
+    const confirmation = confirm("Are you sure you want to logout?")
+    if (!confirmation) return
+    await fetch("/logout", {
+      method: "POST",
+    })
+    document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    window.location.href = "/login"
+  })
+</script>

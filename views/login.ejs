@@ -1,0 +1,41 @@
+<%- include('partials/header') %> <%- include('partials/navbar') %>
+<form>
+  <h1>Login</h1>
+  <input
+    type="text"
+    id="username"
+    name="username"
+    placeholder="username"
+    required
+  />
+  <input
+    type="password"
+    id="password"
+    name="password"
+    placeholder="password"
+    required
+  />
+  <button type="submit">Login</button>
+</form>
+
+<script>
+  const form = document.querySelector("form")
+  form.addEventListener("submit", (e) => {
+    e.preventDefault()
+    const username = document.querySelector("#username").value
+    const password = document.querySelector("#password").value
+    fetch("/api/v1/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    }).then((res) => {
+      if (res.ok) {
+        window.location.href = "/dashboard"
+      } else {
+        alert("Invalid username or password")
+      }
+    })
+  })
+</script>

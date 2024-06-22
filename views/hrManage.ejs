@@ -1,0 +1,25 @@
+<%- include('partials/header') %> <%- include('partials/header') %> <%-
+include('partials/navbar') %> <%- include('partials/logout') %>
+
+<h1>HR Menu</h1>
+<a href="/manage/self"
+  ><button class="primary-button">Edit self details</button></a
+>
+<a href="/manage/employees">
+  <button class="secondary-button">Manage employees</button>
+</a>
+
+<a href="/manage/batch-upload">
+  <button class="primary-button">Upload Delimited File</button>
+</a>
+
+<a href="/manage/employee/new">
+  <button class="secondary-button">Add Employee</button>
+</a>
+
+<style>
+  h1 {
+    text-align: center;
+    margin-top: 50px;
+  }
+</style>

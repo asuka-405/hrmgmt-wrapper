@@ -1,0 +1,18 @@
+<%- include('partials/header') %> <%- include('partials/header') %> <%-
+include('partials/navbar') %> <%- include('partials/logout') %>
+
+<h1>Batch Upload</h1>
+
+<form action="/manage/batch-upload" method="post" enctype="multipart/form-data">
+  <select name="delimiter">
+    <option value="comma">comma (,)</option>
+  </select>
+  <input type="file" name="file" />
+  <button type="submit">Upload</button>
+</form>
+
+<style>
+  h1 {
+    text-align: center;
+  }
+</style>

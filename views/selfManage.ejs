@@ -1,0 +1,107 @@
+<%- include('partials/header') %> <%- include('partials/header') %> <%-
+include('partials/navbar') %> <%- include('partials/logout') %>
+
+<h4>Update Your Details</h4>
+<table>
+  <tr>
+    <th>Email</th>
+    <td data-name="email"><%= email %></td>
+  </tr>
+  <tr>
+    <th>Phone</th>
+    <td data-name="phone"><%= phone %></td>
+  </tr>
+  <tr>
+    <th>Address</th>
+    <td data-name="address"><%= address %></td>
+  </tr>
+  <tr>
+    <th>Password</th>
+    <td data-name="password"></td>
+  </tr>
+
+  <% if(isHRInitiated) {%>
+  <tr>
+    <th>Username</th>
+    <td data-name="username"><%= username %></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <td data-name="name"><%= name %></td>
+  </tr>
+  <tr>
+    <th>Department</th>
+    <td data-name="department"><%= department %></td>
+  </tr>
+  <tr>
+    <th>Position</th>
+    <td data-name="position"><%= position %></td>
+  </tr>
+  <tr>
+    <th>Salary</th>
+    <td data-name="salary"><%= salary %></td>
+  </tr>
+  <tr>
+    <th>Date of Birth</th>
+    <td data-name="dob"><%= dob %></td>
+  </tr>
+  <tr>
+    <th>Date of Hire</th>
+    <td data-name="doh"><%= doh %></td>
+  </tr>
+
+  <% } %>
+</table>
+
+<form>
+  <button type="submit">Update Details</button>
+</form>
+
+<script>
+  const data = document.querySelectorAll("td")
+  data.forEach((td) => {
+    td.contentEditable = true
+  })
+  document.querySelector("form").addEventListener("submit", (event) => {
+    event.preventDefault()
+
+    let employeeData = {}
+    data.forEach((td) => {
+      if (td.innerText === "null") return
+      employeeData[td.dataset.name] = td.innerText
+    })
+
+    employeeData = removeNulls(employeeData)
+
+    const isHRInitiated = "<%= isHRInitiated %>"
+    const isNew = "<%= isNew %>"
+    let url = `/manage/update`
+    let method = "PUT"
+    if (isNew) {
+      url = `/manage/create`
+      method = "POST"
+    } else if (isHRInitiated) url = `/manage/employee/hrtrigger`
+    console.log(url)
+    fetch(url, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(employeeData),
+    })
+      .then(() => {
+        // window.location.href = "/dashboard"
+      })
+      .catch((error) => {
+        console.error("Error:", error)
+        alert("Error adding employee")
+      })
+  })
+
+  function removeNulls(data) {
+    for (let key in data) {
+      if (data[key] == null || data[key] == "") delete data[key]
+    }
+    return data
+  }
+</script>

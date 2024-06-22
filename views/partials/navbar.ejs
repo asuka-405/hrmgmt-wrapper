@@ -1,0 +1,15 @@
+<nav class="navbar-top">
+  <a href="/login">Login</a>
+  <a href="/manage">Manage</a>
+  <a href="/dashboard">Dashboard</a>
+</nav>
+
+<script>
+  const currentPath = window.location.pathname
+  const links = document.querySelectorAll(".navbar-top a")
+  links.forEach((link) => {
+    if (link.href.includes(currentPath)) {
+      link.classList.add("active")
+    }
+  })
+</script>

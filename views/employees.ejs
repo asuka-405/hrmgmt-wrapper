@@ -1,0 +1,58 @@
+<%- include('partials/header') %> <%- include('partials/header') %> <%-
+include('partials/navbar') %> <%- include('partials/logout') %>
+
+<h1>Employee List</h1>
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Name</th>
+    <th>Department</th>
+    <th>Position</th>
+  </tr>
+
+  <% employees.forEach(employee => { %>
+  <tr>
+    <td><%= employee.username %></td>
+    <td><%= employee.name %></td>
+    <td><%= employee.department %></td>
+    <td><%= employee.position %></td>
+  </tr>
+  <% }) %>
+</table>
+
+<style>
+  body {
+    display: block;
+  }
+  h1 {
+    margin-top: 1em;
+  }
+  table {
+    margin-bottom: 2em;
+  }
+  tr:first-of-type {
+    background-color: #1a1a1a;
+    color: thistle;
+  }
+  th:hover {
+    cursor: default;
+  }
+  tr:hover {
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  const rows = document.querySelectorAll("tr")
+  rows.forEach((row) => {
+    row.addEventListener("click", () => {
+      const username = row.querySelector("td").textContent
+      window.location.href = `/manage/employee/${username}`
+    })
+  })
+
+  const nav = document.querySelector("nav")
+  nav.style.position = "sticky"
+  nav.style.top = "1em"
+  nav.style.width = "100%"
+</script>
